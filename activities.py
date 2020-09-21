@@ -16,7 +16,7 @@ Kate Grossman, July 2020
 
 #Requesting a new authorization key (this only needs to be done when the old one has expired)
 def requestAuth():
-    url = "https://www.strava.com/oauth/token?client_id=50254&client_secret=9893718c765650f24515828a87b6099b34c817b5&refresh_token=09a57caf0eb4688f143147714dbe07ed0a336547&grant_type=refresh_token"
+    url = "https://www.strava.com/oauth/token?client_id=50254&client_secret=[CLIENT_SECRET]&refresh_token=09a57caf0eb4688f143147714dbe07ed0a336547&grant_type=refresh_token"
     response = requests.request("POST", url).json()
     return response.get("access_token")
 
@@ -69,7 +69,7 @@ def getMap(p):
         centerLong = minLong+(maxLong-minLong)/2
 
         #Google maps api request
-        url = "https://maps.googleapis.com/maps/api/staticmap?size=200x200&center="+str(centerLat)+" "+str(centerLong)+"&zoom=14&path=weight:3%7Ccolor:blue%7Cenc:"+p+"&key=AIzaSyDlczj1ehGAZ7Gbw8ZFOpt5xlWKfFyT0TI&user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36"
+        url = "https://maps.googleapis.com/maps/api/staticmap?size=200x200&center="+str(centerLat)+" "+str(centerLong)+"&zoom=14&path=weight:3%7Ccolor:blue%7Cenc:"+p+"&key=[KEY]&user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36"
         response = requests.request("GET", url)
 
         map = ImageTk.PhotoImage(Image.open(BytesIO(response.content)))
